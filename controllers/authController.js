@@ -15,10 +15,12 @@ export const registerUser = async (req, res) => {
     const user = await User.create({ firstName, lastName, login, password });
 
     res.status(201).json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      login: user.login,
+      user: {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        login: user.login,
+      },
       token: generateToken(user._id),
     });
   } catch(error) {
@@ -34,10 +36,12 @@ export const loginUser = async (req, res) => {
 
     if(user && (await user.matchPassword(password))) {
       res.json({
-        _id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        login: user.login,
+        user: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          login: user.login,
+        },
         token: generateToken(user._id),
       });
     } else {
