@@ -1,7 +1,11 @@
-const express = require('express');
-const multer = require('multer');
-const User = require('../models/User');
-const path = require('path');
+//const express = require('express');
+//const multer = require('multer');
+//const User = require('../models/User');
+//const path = require('path');
+import express from 'express';
+import multer from 'multer';
+import User from '../models/User.js';
+import path from 'path';
 
 const router = express.Router();
 
@@ -50,4 +54,4 @@ router.post('/upload-resume', upload.single('resume'), async (req, res) => {
     }
 });
 
-module.exports = router; // Export the router
+export default router; // Export the router
